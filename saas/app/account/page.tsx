@@ -43,7 +43,8 @@ export default function AccountPage() {
   }
 
   const userEmail = session.user.email || 'N/A'
-  const userName = (session.user as { name?: string | null }).name || userEmail.split('@')[0]
+  // @ts-ignore
+  const userName = (session.user as any).name || userEmail.split('@')[0]
   const memberSince = new Date().toLocaleDateString('fr-FR', {
     month: 'long',
     year: 'numeric',
