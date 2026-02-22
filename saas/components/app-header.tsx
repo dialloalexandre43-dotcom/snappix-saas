@@ -98,19 +98,26 @@ export function AppHeader() {
             <>
               <div className="w-px h-5 bg-border mx-1 sm:mx-2" />
               <div className="flex items-center gap-2">
-                <div className="hidden sm:flex flex-col items-end">
-                  <span className="text-xs font-medium text-foreground">
-                    {session.user.name || session.user.email?.split('@')[0] || 'Utilisateur'}
-                  </span>
-                  <span className="text-xs text-muted-foreground">
-                    {session.user.email}
-                  </span>
-                </div>
-                <div className="sm:hidden">
-                  <span className="text-xs font-medium text-foreground">
-                    {session.user.email?.split('@')[0] || 'User'}
-                  </span>
-                </div>
+                {(() => {
+                  const user = session.user as { id: string; email: string; name?: string | null; image?: string | null }
+                  return (
+                    <>
+                      <div className="hidden sm:flex flex-col items-end">
+                        <span className="text-xs font-medium text-foreground">
+                          {user.name || user.email?.split('@')[0] || 'User'}
+                        </span>
+                        <span className="text-xs text-muted-foreground">
+                          {user.email}
+                        </span>
+                      </div>
+                      <div className="sm:hidden">
+                        <span className="text-xs font-medium text-foreground">
+                          {user.email?.split('@')[0] || 'User'}
+                        </span>
+                      </div>
+                    </>
+                  )
+                })()}
                 <Button
                   variant="ghost"
                   size="sm"

@@ -1,7 +1,6 @@
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { redirect } from 'next/navigation'
-import { AppHeader } from '@/components/app-header'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { CheckCircle2, ArrowRight, ExternalLink, Chrome } from 'lucide-react'
@@ -18,7 +17,6 @@ export default async function ExtensionPage() {
 
   return (
     <>
-      <AppHeader />
       <main className="max-w-4xl mx-auto px-5 sm:px-8 py-8 sm:py-12">
         <div className="text-center mb-12">
           <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">

@@ -6,7 +6,6 @@ import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { AppHeader } from '@/components/app-header'
 import {
   ArrowRight,
   CheckCircle2,
@@ -44,7 +43,8 @@ export default function AccountPage() {
   }
 
   const userEmail = session.user.email || 'N/A'
-  const userName = session.user.name || userEmail.split('@')[0]
+  const user = session.user as { id: string; email: string; name?: string | null; image?: string | null }
+  const userName = user.name || userEmail.split('@')[0]
   const memberSince = new Date().toLocaleDateString('fr-FR', {
     month: 'long',
     year: 'numeric',
@@ -52,8 +52,6 @@ export default function AccountPage() {
 
   return (
     <>
-      <AppHeader />
-
       <main className="max-w-4xl mx-auto px-5 sm:px-8 py-8 sm:py-12 space-y-8">
         {/* Page title */}
         <div>
@@ -75,9 +73,9 @@ export default function AccountPage() {
             {/* Avatar + Name */}
             <div className="flex items-center gap-4">
               <div className="w-14 h-14 rounded-full bg-secondary border border-border flex items-center justify-center shrink-0">
-                {session.user.image ? (
+                {user.image ? (
                   <img
-                    src={session.user.image}
+                    src={user.image}
                     alt={userName}
                     className="w-full h-full rounded-full object-cover"
                   />
