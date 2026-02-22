@@ -1,0 +1,74 @@
+================================================================================
+🚀 COMMANDES COMPLÈTES POUR LANCER LE SAAS
+================================================================================
+
+📋 ÉTAPE 1 : Aller dans le dossier saas
+--------------------------------------------------------------------------------
+cd "C:\Users\aferr\Desktop\saas image\saas"
+
+
+📦 ÉTAPE 2 : Installer les dépendances (première fois seulement)
+--------------------------------------------------------------------------------
+npm install
+
+
+🔧 ÉTAPE 3 : Générer Prisma Client (première fois seulement)
+--------------------------------------------------------------------------------
+npx prisma generate
+
+
+🗄️ ÉTAPE 4 : Synchroniser la base de données (première fois seulement)
+--------------------------------------------------------------------------------
+npx prisma db push
+
+
+🚀 ÉTAPE 5 : Lancer le serveur de développement
+--------------------------------------------------------------------------------
+npm run dev
+
+
+✅ Le serveur sera accessible sur : http://localhost:3001
+
+
+================================================================================
+📝 CONFIGURATION (.env.local)
+================================================================================
+
+Créez un fichier .env.local dans le dossier saas/ avec le contenu suivant :
+
+DATABASE_URL="votre_url_postgresql"
+NEXTAUTH_URL="http://localhost:3001"
+NEXTAUTH_SECRET="générez-une-clé-secrète"
+FAL_AI_API_KEY="votre-clé-fal-ai"
+STRIPE_SECRET_KEY="sk_test_votre_clé"
+STRIPE_PRICE_ID_STARTER="price_1T1qccI1dUWiif5H4Smh4p6c"
+STRIPE_PRICE_ID_PRO="price_1T1qclI1dUWiif5H5kPrBTar"
+
+
+================================================================================
+⚡ DÉMARRAGE RAPIDE (si déjà configuré)
+================================================================================
+
+cd "C:\Users\aferr\Desktop\saas image\saas"
+npm run dev
+
+
+================================================================================
+🛑 ARRÊTER LE SERVEUR
+================================================================================
+
+Appuyez sur Ctrl + C dans le terminal
+
+
+================================================================================
+📚 DOCUMENTATION COMPLÈTE
+================================================================================
+
+Voir les fichiers :
+- LAUNCH_COMPLETE.md (guide complet)
+- QUICK_START.md (démarrage rapide)
+- ENV_TEMPLATE.txt (template pour .env.local)
+
+
+
+

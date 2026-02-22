@@ -1,0 +1,15 @@
+# Ajoutez ces lignes à votre fichier .env.local ou .env
+
+# Stripe Configuration
+STRIPE_SECRET_KEY=sk_test_... # Votre clé secrète Stripe (Dashboard → Developers → API keys)
+STRIPE_WEBHOOK_SECRET=whsec_... # Secret du webhook (après configuration)
+STRIPE_PRICE_ID_STARTER=price_1T1pJmEsWYYtIPnHFaeo5Ylr
+STRIPE_PRICE_ID_PRO=price_1T1pKwEsWYYtIPnHdyHdpL2F
+
+
+
+
+
+
+
+

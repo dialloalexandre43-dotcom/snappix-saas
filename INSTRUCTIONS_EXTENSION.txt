@@ -1,0 +1,58 @@
+═══════════════════════════════════════════════════════════════
+  GUIDE RAPIDE : CHARGER L'EXTENSION CHROME
+═══════════════════════════════════════════════════════════════
+
+ÉTAPE 1 : OUVRIR LA PAGE DES EXTENSIONS
+─────────────────────────────────────────
+1. Ouvrez Google Chrome
+2. Dans la barre d'adresse, tapez : chrome://extensions/
+3. Appuyez sur Entrée
+
+ÉTAPE 2 : ACTIVER LE MODE DÉVELOPPEUR
+─────────────────────────────────────────
+1. En haut à droite, activez le toggle "Mode développeur"
+2. Les options de développement apparaîtront
+
+ÉTAPE 3 : CHARGER L'EXTENSION
+─────────────────────────────────────────
+1. Cliquez sur "Charger l'extension non empaquetée"
+   (ou "Load unpacked" en anglais)
+
+2. Naviguez vers ce dossier :
+   C:\Users\aferr\Desktop\saas image\extension
+
+3. IMPORTANT : Sélectionnez le dossier "extension"
+   (pas le dossier parent "saas image")
+
+4. Cliquez sur "Sélectionner le dossier"
+
+ÉTAPE 4 : VÉRIFIER
+─────────────────────────────────────────
+Vous devriez voir :
+✅ L'extension "Snappix" dans la liste
+✅ L'icône de l'extension dans la barre d'outils Chrome
+✅ Le statut "Erreurs" devrait être à 0
+
+═══════════════════════════════════════════════════════════════
+  TESTER L'EXTENSION
+═══════════════════════════════════════════════════════════════
+
+1. Allez sur une page produit Amazon ou AliExpress
+   Exemple : https://www.amazon.fr/dp/B08XXXXXXX
+
+2. Cliquez sur l'icône Snappix dans la barre d'outils Chrome
+
+3. Le popup s'ouvre et détecte automatiquement l'image
+
+4. Vérifiez que l'URL de l'API est : http://localhost:3001
+
+5. Sélectionnez un style et un format, puis cliquez sur
+   "Générer mes visuels"
+
+═══════════════════════════════════════════════════════════════
+
+
+
+
+
+

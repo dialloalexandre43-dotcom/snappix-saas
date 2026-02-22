@@ -1,0 +1,40 @@
+# Copiez ce contenu dans votre fichier .env.local
+# Créez le fichier .env.local dans le dossier saas/
+
+# Database
+# Exemple pour Supabase : postgresql://user:password@host:5432/database?sslmode=require
+DATABASE_URL="postgresql://user:password@localhost:5432/saas_image_generator?schema=public"
+
+# NextAuth
+NEXTAUTH_URL="http://localhost:3001"
+# Générer avec PowerShell : [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes([System.Guid]::NewGuid().ToString() + [System.Guid]::NewGuid().ToString()))
+NEXTAUTH_SECRET="votre-clé-secrète-générée-ici"
+
+# Fal.ai API (pour la génération d'images)
+# Obtenez votre clé sur https://fal.ai
+FAL_AI_API_KEY="votre-clé-api-fal-ai"
+FAL_AI_MODEL_ID="fal-ai/flux"
+
+# Stripe (pour les abonnements)
+# Mode test : https://dashboard.stripe.com/test/apikeys
+# Mode production : https://dashboard.stripe.com/apikeys
+STRIPE_SECRET_KEY="sk_test_votre_clé_secrète_stripe"
+STRIPE_PUBLISHABLE_KEY="pk_test_votre_clé_publique_stripe"
+# Price IDs depuis Stripe Dashboard > Products
+STRIPE_PRICE_ID_STARTER="price_1T1qccI1dUWiif5H4Smh4p6c"
+STRIPE_PRICE_ID_PRO="price_1T1qclI1dUWiif5H5kPrBTar"
+# Webhook secret depuis Stripe CLI ou Dashboard
+STRIPE_WEBHOOK_SECRET="whsec_votre_secret_webhook"
+
+# Google OAuth (optionnel)
+# Créez un projet sur https://console.cloud.google.com
+GOOGLE_CLIENT_ID="votre_google_client_id"
+GOOGLE_CLIENT_SECRET="votre_google_client_secret"
+
+# Apple OAuth (optionnel)
+APPLE_ID="votre_apple_id"
+APPLE_SECRET="votre_apple_secret"
+
+
+
+

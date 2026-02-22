@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 30% 95%;
+    --foreground: 30 10% 12%;
+    --card: 40 25% 97%;
+    --card-foreground: 30 10% 12%;
+    --popover: 40 25% 97%;
+    --popover-foreground: 30 10% 12%;
+    --primary: 30 10% 12%;
+    --primary-foreground: 40 30% 95%;
+    --secondary: 38 20% 91%;
+    --secondary-foreground: 30 10% 12%;
+    --muted: 38 18% 90%;
+    --muted-foreground: 30 6% 46%;
+    --accent: 25 80% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 38 16% 85%;
+    --input: 38 16% 85%;
+    --ring: 25 80% 50%;
+    --chart-1: 25 80% 50%;
+    --chart-2: 173 40% 40%;
+    --chart-3: 200 30% 35%;
+    --chart-4: 43 60% 55%;
+    --chart-5: 340 50% 50%;
+    --radius: 0.625rem;
+    --sidebar-background: 40 25% 96%;
+    --sidebar-foreground: 30 8% 30%;
+    --sidebar-primary: 25 80% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 38 20% 91%;
+    --sidebar-accent-foreground: 30 10% 12%;
+    --sidebar-border: 38 16% 85%;
+    --sidebar-ring: 25 80% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Gradient backgrounds */
+.gradient-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-bg-light {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+

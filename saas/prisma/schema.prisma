@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String    @id @default(cuid())
+  email             String    @unique
+  passwordHash      String?   // Optionnel pour permettre l'authentification Google
+  name              String?   // Nom de l'utilisateur (depuis Google)
+  image             String?   // Photo de profil (depuis Google)
+  plan              UserPlan  @default(FREE) // Plan d'abonnement
+  stripeCustomerId  String?   // ID du client Stripe
+  stripeSubscriptionId String? // ID de l'abonnement Stripe
+  stripePriceId     String?   // ID du prix Stripe (pour le plan actuel)
+  stripeCurrentPeriodEnd DateTime? // Date de fin de la période d'abonnement
+  createdAt         DateTime  @default(now())
+  jobs              Job[]
+}
+
+enum UserPlan {
+  FREE // 3 images/mois - 3 formats de base
+  STARTER // 50 images/mois - 7 formats essentiels
+  PRO // 300 images/mois - 15+ formats PRO
+}
+
+model Job {
+  id              String           @id @default(cuid())
+  userId          String
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sourceImageUrl  String
+  sourceUrl       String? // URL de la page produit (Amazon/AliExpress)
+  style           String
+  ratio           String
+  status          JobStatus        @default(PENDING)
+  createdAt       DateTime         @default(now())
+  generatedImages GeneratedImage[]
+}
+
+model GeneratedImage {
+  id        String   @id @default(cuid())
+  jobId     String
+  job       Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  imageUrl  String
+  createdAt DateTime @default(now())
+}
+
+enum JobStatus {
+  PENDING
+  PROCESSING
+  DONE
+  ERROR
+}

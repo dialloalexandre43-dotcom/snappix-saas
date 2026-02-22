@@ -1,0 +1,59 @@
+{
+  "manifest_version": 3,
+  "name": "Snappix",
+  "version": "1.0.0",
+  "description": "Generate professional product visuals from Amazon and AliExpress",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.amazon.com/*",
+    "https://www.amazon.fr/*",
+    "https://www.amazon.co.uk/*",
+    "https://www.aliexpress.com/*",
+    "https://fr.aliexpress.com/*",
+    "http://localhost:3001/*",
+    "https://*/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Snappix - Generate Product Visuals"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.amazon.com/*",
+        "https://www.amazon.fr/*",
+        "https://www.amazon.co.uk/*",
+        "https://www.aliexpress.com/*",
+        "https://fr.aliexpress.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "logo.png",
+        "styles/*.jpg",
+        "styles/*.png",
+        "styles/*.webp",
+        "styles/style1.jpg.jpg",
+        "styles/style2.jpg.jpg",
+        "styles/style3.jpg.jpg",
+        "styles/style4.jpg.jpg",
+        "styles/style5.jpg.jpg",
+        "styles/style6.jpg.jpg",
+        "styles/style7.jpg.jpg",
+        "styles/style8.jpg.jpg"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
