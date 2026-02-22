@@ -29,16 +29,22 @@ export async function POST(request: NextRequest) {
     const stripe = getStripe()
 
     // Cancel the subscription at the end of the billing period
-    const subscription: Stripe.Subscription = await stripe.subscriptions.update(user.stripeSubscriptionId, {
+    const subscription = await stripe.subscriptions.update(user.stripeSubscriptionId, {
       cancel_at_period_end: true,
     })
 
     console.log(`✅ Subscription ${user.stripeSubscriptionId} set to cancel at period end`)
 
+    // Use type assertion to access Stripe subscription properties
+    const stripeSub = subscription as Stripe.Subscription & {
+      cancel_at: number | null
+      current_period_end: number
+    }
+
     return NextResponse.json({
       message: 'Subscription will be cancelled at the end of the billing period',
-      cancelAt: subscription.cancel_at ? new Date(subscription.cancel_at * 1000).toISOString() : null,
-      currentPeriodEnd: new Date(subscription.current_period_end * 1000).toISOString(),
+      cancelAt: stripeSub.cancel_at ? new Date(stripeSub.cancel_at * 1000).toISOString() : null,
+      currentPeriodEnd: new Date(stripeSub.current_period_end * 1000).toISOString(),
     })
   } catch (error: any) {
     console.error('Error cancelling subscription:', error)
