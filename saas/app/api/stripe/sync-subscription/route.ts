@@ -65,6 +65,9 @@ export async function POST(request: NextRequest) {
 
     const plan = getPlanFromPriceId(priceId)
 
+    // @ts-ignore - Stripe subscription current_period_end property
+    const currentPeriodEnd = (subscription as any).current_period_end
+
     // Mettre à jour l'utilisateur
     await prisma.user.update({
       where: { id: session.user.id },
@@ -72,7 +75,7 @@ export async function POST(request: NextRequest) {
         plan,
         stripeSubscriptionId: subscription.id,
         stripePriceId: priceId,
-        stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000),
+        stripeCurrentPeriodEnd: new Date(currentPeriodEnd * 1000),
       },
     })
 
@@ -81,7 +84,7 @@ export async function POST(request: NextRequest) {
       plan,
       subscriptionId: subscription.id,
       priceId,
-      periodEnd: new Date(subscription.current_period_end * 1000).toISOString(),
+      periodEnd: new Date(currentPeriodEnd * 1000).toISOString(),
     })
   } catch (error: any) {
     console.error('Error syncing subscription:', error)

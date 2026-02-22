@@ -93,13 +93,15 @@ export async function POST(request: NextRequest) {
             }
 
             if (userToUpdate) {
+              // @ts-ignore - Stripe subscription current_period_end property
+              const currentPeriodEnd = (subscription as any).current_period_end
               await prisma.user.update({
                 where: { id: userToUpdate.id },
                 data: {
                   plan,
                   stripeSubscriptionId: subscriptionId,
                   stripePriceId: priceId,
-                  stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000),
+                  stripeCurrentPeriodEnd: new Date(currentPeriodEnd * 1000),
                 },
               })
               console.log(`✅ User ${userToUpdate.id} updated to plan ${plan} via checkout.session.completed`)
@@ -120,11 +122,13 @@ export async function POST(request: NextRequest) {
         const subscription = event.data.object as Stripe.Subscription
         const customerId = subscription.customer as string
 
+        // @ts-ignore - Stripe subscription cancel_at_period_end property
+        const cancelAtPeriodEnd = (subscription as any).cancel_at_period_end
         console.log('Subscription updated/created:', {
           subscriptionId: subscription.id,
           customerId,
           status: subscription.status,
-          cancelAtPeriodEnd: subscription.cancel_at_period_end,
+          cancelAtPeriodEnd,
         })
 
         const user = await prisma.user.findFirst({
@@ -158,11 +162,15 @@ export async function POST(request: NextRequest) {
         }
 
         const plan = getPlanFromPriceId(priceId)
+        // @ts-ignore - Stripe subscription properties with underscores
+        const cancelAtPeriodEnd = (subscription as any).cancel_at_period_end
+        // @ts-ignore - Stripe subscription current_period_end property
+        const currentPeriodEnd = (subscription as any).current_period_end
         console.log('Updating user plan:', {
           userId: user.id,
           plan,
           priceId,
-          cancelAtPeriodEnd: subscription.cancel_at_period_end,
+          cancelAtPeriodEnd,
         })
 
         await prisma.user.update({
@@ -171,7 +179,7 @@ export async function POST(request: NextRequest) {
             plan,
             stripeSubscriptionId: subscription.id,
             stripePriceId: priceId,
-            stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000),
+            stripeCurrentPeriodEnd: new Date(currentPeriodEnd * 1000),
           },
         })
 
@@ -217,12 +225,14 @@ export async function POST(request: NextRequest) {
           if (subscription.items.data[0]?.price?.id) {
             const priceId = subscription.items.data[0].price.id
             const plan = getPlanFromPriceId(priceId)
+            // @ts-ignore - Stripe subscription current_period_end property
+            const currentPeriodEnd = (subscription as any).current_period_end
 
             await prisma.user.update({
               where: { id: user.id },
               data: {
                 plan,
-                stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000),
+                stripeCurrentPeriodEnd: new Date(currentPeriodEnd * 1000),
               },
             })
           }

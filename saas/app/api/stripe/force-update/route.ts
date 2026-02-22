@@ -59,6 +59,9 @@ export async function POST(request: NextRequest) {
     const plan = getPlanFromPriceId(priceId)
     console.log('Plan determined:', plan)
 
+    // @ts-ignore - Stripe subscription current_period_end property
+    const currentPeriodEnd = (subscription as any).current_period_end
+
     // Mettre à jour l'utilisateur
     const updated = await prisma.user.update({
       where: { id: session.user.id },
@@ -66,7 +69,7 @@ export async function POST(request: NextRequest) {
         plan,
         stripeSubscriptionId: subscription.id,
         stripePriceId: priceId,
-        stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000),
+        stripeCurrentPeriodEnd: new Date(currentPeriodEnd * 1000),
       },
     })
 
@@ -75,7 +78,7 @@ export async function POST(request: NextRequest) {
       plan: updated.plan,
       subscriptionId: subscription.id,
       priceId,
-      periodEnd: new Date(subscription.current_period_end * 1000).toISOString(),
+      periodEnd: new Date(currentPeriodEnd * 1000).toISOString(),
       debug: {
         priceIdFromStripe: priceId,
         priceIdStarter: process.env.STRIPE_PRICE_ID_STARTER,
