@@ -16,7 +16,19 @@ export default async function DashboardPage() {
 
   // Récupérer l'utilisateur avec son plan
   let user = null
-  let jobs = []
+  let jobs: Array<{
+    id: string
+    style: string
+    ratio: string
+    status: string
+    sourceUrl: string | null
+    createdAt: Date
+    generatedImages: Array<{
+      id: string
+      imageUrl: string
+      createdAt: Date
+    }>
+  }> = []
   try {
     user = await prisma.user.findUnique({
       where: { id: session.user.id },
