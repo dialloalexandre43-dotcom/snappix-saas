@@ -39,12 +39,17 @@ export async function GET(request: NextRequest) {
 
         stripeData = {
           customerId: user.stripeCustomerId,
-          subscriptions: subscriptions.data.map(sub => ({
-            id: sub.id,
-            status: sub.status,
-            priceId: sub.items.data[0]?.price?.id,
-            currentPeriodEnd: new Date(sub.current_period_end * 1000).toISOString(),
-          })),
+          subscriptions: subscriptions.data.map(sub => {
+            // Force le type Stripe.Subscription pour l'objet 'sub'
+            const stripeSub = sub as any
+            return {
+              id: sub.id,
+              status: sub.status,
+              priceId: sub.items.data[0]?.price?.id,
+              currentPeriodEnd: new Date(stripeSub.current_period_end * 1000).toISOString(),
+              cancelAt: stripeSub.cancel_at ? new Date(stripeSub.cancel_at * 1000).toISOString() : null,
+            }
+          }),
         }
       } catch (error: any) {
         stripeData = {
