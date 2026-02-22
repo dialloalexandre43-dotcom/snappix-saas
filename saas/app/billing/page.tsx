@@ -27,7 +27,7 @@ export default async function BillingPage() {
     <main className="container mx-auto px-4 py-8 max-w-4xl">
       <BillingClient
         currentPlan={userPlan}
-        subscriptionEnd={user?.stripeCurrentPeriodEnd}
+        subscriptionEnd={user?.stripeCurrentPeriodEnd ?? null}
         hasSubscription={!!user?.stripeSubscriptionId}
       />
     </main>

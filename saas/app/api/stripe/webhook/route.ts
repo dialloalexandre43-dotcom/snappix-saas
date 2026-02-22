@@ -215,9 +215,11 @@ export async function POST(request: NextRequest) {
           where: { stripeCustomerId: customerId },
         })
 
-        if (user && invoice.subscription) {
+        // @ts-ignore - Stripe invoice subscription property
+        const invoiceSubscription = (invoice as any).subscription
+        if (user && invoiceSubscription) {
           const subscription = await getStripe().subscriptions.retrieve(
-            invoice.subscription as string
+            invoiceSubscription as string
           )
 
           if (subscription.items.data[0]?.price?.id) {
