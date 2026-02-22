@@ -36,7 +36,8 @@ export async function POST(request: NextRequest) {
     console.log(`✅ Subscription ${user.stripeSubscriptionId} set to cancel at period end`)
 
     // Use type assertion to access Stripe subscription properties
-    const stripeSub = subscription as Stripe.Subscription & {
+    // Convert via 'unknown' first to avoid type overlap issues
+    const stripeSub = subscription as unknown as {
       cancel_at: number | null
       current_period_end: number
     }
