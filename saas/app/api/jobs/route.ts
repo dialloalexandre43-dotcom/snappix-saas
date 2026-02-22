@@ -4,7 +4,7 @@ import { authOptions } from '@/lib/auth'
 import { prisma, retryPrismaOperation } from '@/lib/prisma'
 import { z } from 'zod'
 import { generateImagesWithFalAI } from '@/lib/falai'
-import { getFormatsByPlan, formatIdToRatio, isFormatAvailableForPlan, isStyleAvailableForPlan, type UserPlan } from '@/lib/formats'
+import { getFormatsByPlan, getStylesByPlan, formatIdToRatio, isFormatAvailableForPlan, isStyleAvailableForPlan, type UserPlan } from '@/lib/formats'
 
 const createJobSchema = z.object({
   imageUrl: z.string().url().optional(),
