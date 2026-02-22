@@ -43,8 +43,9 @@ export default function AccountPage() {
   }
 
   const userEmail = session.user.email || 'N/A'
+  // Type assertion sécurisée avec optional chaining pour accéder à name et image
   const user = session.user as { id: string; email: string; name?: string | null; image?: string | null }
-  const userName = user.name || userEmail.split('@')[0]
+  const userName = user?.name ?? userEmail.split('@')[0]
   const memberSince = new Date().toLocaleDateString('fr-FR', {
     month: 'long',
     year: 'numeric',
@@ -73,7 +74,7 @@ export default function AccountPage() {
             {/* Avatar + Name */}
             <div className="flex items-center gap-4">
               <div className="w-14 h-14 rounded-full bg-secondary border border-border flex items-center justify-center shrink-0">
-                {user.image ? (
+                {user?.image ? (
                   <img
                     src={user.image}
                     alt={userName}
