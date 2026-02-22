@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { getStripe } from '@/lib/stripe'
 import { prisma } from '@/lib/prisma'
+import Stripe from 'stripe'
 
 export async function POST(request: NextRequest) {
   try {
@@ -28,7 +29,7 @@ export async function POST(request: NextRequest) {
     const stripe = getStripe()
 
     // Cancel the subscription at the end of the billing period
-    const subscription = await stripe.subscriptions.update(user.stripeSubscriptionId, {
+    const subscription: Stripe.Subscription = await stripe.subscriptions.update(user.stripeSubscriptionId, {
       cancel_at_period_end: true,
     })
 
