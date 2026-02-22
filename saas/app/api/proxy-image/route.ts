@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
       try {
         const watermarkedBuffer = await addWatermarkToImage(imageUrl)
         
-        return new NextResponse(watermarkedBuffer, {
+        return new NextResponse(new Uint8Array(watermarkedBuffer), {
           headers: {
             'Content-Type': 'image/jpeg',
             'Cache-Control': 'public, max-age=31536000, immutable',
