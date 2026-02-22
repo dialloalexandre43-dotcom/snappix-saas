@@ -162,8 +162,6 @@ export async function POST(request: NextRequest) {
         }
 
         const plan = getPlanFromPriceId(priceId)
-        // @ts-ignore - Stripe subscription properties with underscores
-        const cancelAtPeriodEnd = (subscription as any).cancel_at_period_end
         // @ts-ignore - Stripe subscription current_period_end property
         const currentPeriodEnd = (subscription as any).current_period_end
         console.log('Updating user plan:', {
