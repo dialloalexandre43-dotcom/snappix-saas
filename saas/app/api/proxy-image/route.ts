@@ -4,6 +4,9 @@ import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { addWatermarkToImage } from '@/lib/watermark'
 
+// Force dynamic rendering (uses headers, session, etc.)
+export const dynamic = 'force-dynamic'
+
 /**
  * GET /api/proxy-image?url=IMAGE_URL
  * Proxy image with watermark for FREE plan users

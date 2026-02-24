@@ -4,6 +4,9 @@ import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { getFormatsByPlan, getStylesByPlan, type UserPlan } from '@/lib/formats'
 
+// Force dynamic rendering (uses headers, session, etc.)
+export const dynamic = 'force-dynamic'
+
 /**
  * GET /api/user/plan
  * Get user's subscription plan, available formats, and available styles
