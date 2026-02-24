@@ -1,0 +1,44 @@
+# ============================================
+# Variables d'environnement pour Vercel
+# ============================================
+# Copiez ce fichier et ajoutez les valeurs depuis votre .env.local
+# Puis ajoutez chaque variable dans Vercel Dashboard
+# ============================================
+
+# Database
+DATABASE_URL=postgresql://postgres.yvxfriiubqqrrussgpay:ezojbczvokoih@aws-1-eu-west-1.pooler.supabase.com:6543/postgres?pgbouncer=true
+
+# NextAuth
+NEXTAUTH_URL=https://snappix-saas.vercel.app
+NEXTAUTH_SECRET=y9SfWopTR52o1UDUBgG/VKaFaRJwO4a2CNYcrDhchMk=
+
+# Fal.ai API
+FAL_AI_API_KEY=YOUR_FAL_AI_API_KEY_HERE
+
+# Stripe (TEST Mode)
+STRIPE_SECRET_KEY=YOUR_STRIPE_SECRET_KEY_HERE
+STRIPE_PRICE_ID_STARTER=YOUR_STRIPE_PRICE_ID_STARTER_HERE
+STRIPE_PRICE_ID_PRO=price_1T1pKwEsWYYtIPnHdyHdpL2F
+STRIPE_WEBHOOK_SECRET=YOUR_STRIPE_WEBHOOK_SECRET_HERE
+
+# Google OAuth
+GOOGLE_CLIENT_ID=YOUR_GOOGLE_CLIENT_ID_HERE
+GOOGLE_CLIENT_SECRET=YOUR_GOOGLE_CLIENT_SECRET_HERE
+
+# Apple OAuth (Optionnel)
+APPLE_ID=YOUR_APPLE_ID_HERE
+APPLE_SECRET=YOUR_APPLE_SECRET_HERE
+
+# Fal.ai Model (Optionnel - par défaut: fal-ai/flux-pro/kontext)
+FAL_AI_MODEL_ID=fal-ai/flux-pro/kontext
+
+# ============================================
+# Instructions :
+# ============================================
+# 1. Remplacez toutes les valeurs "YOUR_XXX_HERE" par les vraies valeurs depuis votre .env.local
+# 2. Pour NEXTAUTH_URL : Mettez à jour avec l'URL réelle après le premier déploiement Vercel
+# 3. Ajoutez chaque variable dans Vercel Dashboard → Settings → Environment Variables
+# 4. Cochez "Production" pour chaque variable
+# 5. Les variables marquées "Optionnel" ne sont pas obligatoires
+# ============================================
+
