@@ -226,7 +226,8 @@ async function downloadImageAsBase64(url: string): Promise<{ base64: string; mim
         console.log('🔄 Converting AVIF to JPEG (Fal.ai compatibility)...')
         try {
           const sharp = (await import('sharp')).default
-          finalBuffer = await sharp(buffer as Buffer)
+          // @ts-ignore - Buffer type compatibility with sharp
+          finalBuffer = await sharp(buffer as any)
             .jpeg({ quality: 90 })
             .toBuffer()
           finalMimeType = 'image/jpeg'
